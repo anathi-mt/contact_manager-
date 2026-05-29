@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+  <meta charset="UTF-8"/> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+
+  <title>Contact Manager</title>
+
+  <style>
+                                <!--CSS-->
+    body{
+        font-family:Arial, Helvetica, sans-serif;
+        background: rgb(241, 227, 227); 
+        padding: 40px; 
+    }
+    .container{  
+        max-width:900px;
+        margin: auto;
+        background: white;
+        padding:30px; 
+        border-radius: 10px; 
+        box-shadow:0 0 10px rgba(0,0,0,01);
+
+    }
+     
+    h1{
+        margin-bottom: 30px;
+    }
+    h2{
+        color: #007bff;
+    }
+
+    table{
+        width:100%; 
+        border-collapse: collapse;
+        margin-bottom: 30px;
+    }
+    th{
+        background: #007bff;
+        color:white; 
+        padding: 12px;
+        text-align:left;
+    }
+    td{
+        padding:12px; 
+        border-bottom: 1px solid #ddd;
+    }
+    tr:nth-child(even){
+        background: #f9f9f9;
+    }
+    input{
+        width:100%;
+        padding:12px;
+        margin-bottom: 15px;
+        border:1px solid #ccc;
+        border-radius: 5px;
+        font-size:16px;
+    }
+    button{
+        padding:12px 20px;
+        border:none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size:16px;
+    }
+    .add-btn{
+        background: #007bff;
+        color: white;
+    }
+    .delete-btn{
+        background: red;
+        color: white;
+    }
+     
+    </style>
+</head>
+  
+                                  <!--HTML-->
+ <body> 
+
+  <div class="container">
+  <h1>Contact Manager</h1>
+
+  <h2>Contact List</h2>
+  <table id="contactTable">
+
+    <thread>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Action</th>
+        </tr>
+    </thread>
+
+    <tbody>
+        <tr>
+            <td>Melo Khumalo</td>
+            <td>melo@example.com</td>
+            <td>086-678-6589</td>
+            <td>
+                <button class="delete-btn" onclick="deleteContact(this)">
+                    Remove
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Lerato Dlamini</td>
+            <td>lerato@example.com</td>
+            <td>071-234-5678</td>
+            <td>
+                <button class= "delete-btn" onclick="deleteContact(this)">
+                    Remove
+                </button>
+            
+            </td>
+        </tr>
+         
+        <tr>
+            <td>Sipho Nkosi</td>
+            <td>sipho@example.com</td>
+            <td>063-456-789</td>
+            <td>
+                <button class="delete-btn" onclick="deleteContact(this)">
+                    Remove
+                </button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <h2> Add New Contacts </h2>
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="email" id="email" placeholder="Email Address">
+  <input type="text" id="phone" placeholder="Phone Number">
+
+  <button class=" add-btn" onclick="addContact()">
+    Add Contact
+  </button>
+  </div>
+
+
+  <script> <!--JavaScript-->
+   
+   function addContact() {
+    
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+
+     if(name === ""|| email === ""|| phone === ""){
+        alert("Please fill in all fields");
+        return;
+     }
+
+    let table = document
+        .getElementById("contactTable")
+        .getElementsByTagName("tbody")[0];
+
+    let newRow = table.insertRow();
+    
+     newRow.innerHTML= `
+     <td>${name}</td>
+     <td>${email}</td>
+     <td>${phone}</td> 
+     <td>
+        <button class = "delete-btn " onclick="deleteContact(this)" > 
+            Remove 
+        </button>
+     </td>`;
+
+     document.getElementById("name").value="";
+     document.getElementById("email"). value="";
+     document.getElementById("phone").value ="";
+    }
+
+    function deleteContact(button){
+        let row= button.parentNode.parentNode;
+        row.remove();
+    }
+  
+  </script>
+
+ </body>
+
+</html>
+
+<!--- Issue when l add a contact and click the button the page doesnt load the contact --->
